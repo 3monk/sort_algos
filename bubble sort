@@ -1,0 +1,38 @@
+"""
+Bubble Sort is the simplest sorting algorithm where the adjacent elements in a list are repeatedly swapped (if they are in wrong order), until the list is sorted.
+"""
+import random
+
+# This function creats a list containing 10 random entries in the range between 0 to 10
+def createList():
+   
+    lst= random.sample(range(10),10)
+    print(lst)
+    return lst
+
+#this function will compare the adjacent elements, while traversing list and swap & sort them.
+def bbble_sort(lst):
+    
+    n = len(lst)
+    
+    #traverse through all the elements in the list
+    
+    for i in range(n):
+        
+        for j in range(0,n-i-1):
+             #traverse the list from 0 to n-i-1. #Swap if the element found is greater than the next element.
+            if lst[j] > lst[j+1]:
+                lst[j], lst[j+1] = lst[j+1], lst[j]  # this is a feature in python wherein you can just 
+                                                     #swap the values of two locations without using another storage variable.
+    
+    return lst
+
+lst=createList()  #calling the function to create a list of with random entries
+
+
+print("Sorted list is:")
+print(bbble_sort(lst))  #calling the bubble sort function directly within the print statement. #One can make a seperate call within a variable and then print that variable.
+
+    
+                
+    
