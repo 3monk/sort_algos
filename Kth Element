@@ -1,0 +1,83 @@
+import random
+
+def createList():
+    
+    lst= random.sample(range(10),10)
+    print(lst)
+    return lst
+    
+    
+def kth_largest(lst,k):
+    #this function will return the kth largest element
+    
+    #base case
+    if len(lst) < k:
+        return -1
+    #making copy of list
+    copy_list=lst.copy()
+    counter=0
+    #finding kth largest element
+    while(len(copy_list) > 0):
+        left = [] #left wing
+        right = [] #right wing
+        
+        
+        random_pivot = copy_list[0] #for my convenience i am taking the first element of list
+                
+        # appending left and right wing
+        for element in copy_list:
+            
+            counter+=1
+            
+            if element > random_pivot:
+                right.append(element)
+            
+            if element < random_pivot:
+                left.append(element)
+                
+        #checking for kth element
+        #length of left wing would be one less than kth position
+        
+        if len(left) == k-1:  # if my random pivot is in the list
+
+            return random_pivot
+        
+        
+        
+        #checking if kth element in in the right wing
+        elif len(left) < k:
+            
+            copy_list = right
+            
+            subtract_index = len(left)+1 # if left element are chopped off k will change
+            
+            # updating K
+            k = k- subtract_index
+            
+        # if kth element is in left wing
+        else:
+        
+            copy_list = left
+            
+    print(counter)
+    return -1
+
+lst = createList()
+
+
+
+k=6
+
+kth_element = kth_largest(lst, k)
+
+if (kth_element == -1):
+    print("No such element exists")
+    
+else:
+    lst.sort()
+    print(lst)
+    print("Kth largest element is", kth_element)
+    
+    
+# needs only one iteration! 
+#as good as linear search!
